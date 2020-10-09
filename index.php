@@ -28,7 +28,7 @@
             <section>
                 <?php
                     require_once('connect/connent_DB.php');
-                    $sql = "SELECT * from Ben_comments";
+                    $sql = "SELECT * from $cmmts_table";
                     $sth = $conn->prepare($sql);
                     $sth->execute();
                     $sth->setFetchMode(PDO::FETCH_ASSOC);

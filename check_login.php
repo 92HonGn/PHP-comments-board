@@ -4,13 +4,28 @@
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-  $sql = "SELECT * from $users_table where username='" . $username . "' and password='" . $password ."'";
-  $result = $conn->query($sql);
+  $sql = "SELECT * FROM $users_table" .
+         "where username = :username";
 
-  if ($result->num_rows > 0) {
-    echo '登入成功';
+  $sth = $conn->prepare($sql);
+
+  $sth->bindParam(':username',$username);
+
+  $sth->execute();
+
+  $sth->setFetchMode(PDO::FETCH_ASSOC);
+
+  if ($sth->rowCount() === 1) {
+    $row = $sth->fetch();
+
+    if(password_verify($password, $row['password'])){
+      echo '登入成功';
+    }else{
+      echo '密碼錯誤';
+    }
+    
   } else {
-    header('Location: index.php');  
+    echo '查無此帳號';
   }
 
 ?>

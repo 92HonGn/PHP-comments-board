@@ -3,6 +3,27 @@
 
   $username = $_POST['username'];
   $password = $_POST['password'];
+  $nickname = $_POST['nickname'];
+
+  $check_sql = "SELECT username, nickname FROM $user_table"."WHERE username=:username OR nickname=:nickname";
+
+  $check_sth = $conn->prepare($sql);
+
+  $check_sth->bindParam(':username', $username);
+  $check_sth->bindParam(':nickname', $nickname);
+
+  $check_sth->execute();
+
+  $check_sth->setFetchMode(PDO::FETCH_ASSOC);
+
+  if ($check_sth->rowCount() === 0 ){
+    
+  } else {
+
+  }
+
+
+
   $sqlSelect = "SELECT * FROM $users_table where username='" . $username . "'" ;
 
   if ($username && $password ) {

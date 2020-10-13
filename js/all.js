@@ -43,4 +43,5 @@
     result.textContent = message;
     result.style.visibility = 'visible';
   }
+
 })()

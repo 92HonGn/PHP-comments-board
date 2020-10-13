@@ -18,7 +18,7 @@
   <div class="login-panel">
     <form
       action=''
-      method=''
+      method='POST'
     >
       <input
         class="login-input"
@@ -39,7 +39,7 @@
       />
     </form>
   </div>
-  <div class="login-register">
+  <div class="login-info">
     <a href="register.php">首次登入，請按此註冊</a>
   </div>
 </body>

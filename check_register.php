@@ -1,5 +1,6 @@
 <?php
   session_start();
+
   require_once('connect/connent_DB.php');
 
   $username = $_POST['username'];
@@ -20,7 +21,7 @@
   if ($check_sth->rowCount() === 0 ){
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $register_sql = "INSERT INTO $user_table (username, password, nickname"."VALUES (:username, :password, :nickname)";
+    $register_sql = "INSERT INTO $user_table (username, password, nickname)"."VALUES (:username, :password, :nickname)";
 
     $register_sth = $conn->prepare($register_sql);
 
@@ -32,13 +33,13 @@
 
     if ($register_sth->execute($param)){
       $_SESSION['user_id'] = $conn->lastInsertId();
-      echo 'ok';
+      echo '註冊成功';
     }
 
   } else {
     while($check_row = $check_sth->fetch()){
       if(!strcasecmp($check_row['username'],$username) AND !strcasecmp($check_row['nickname'],$nickname)){
-        echo '帳號匿名錯誤';
+        echo '帳號和匿名錯誤';
       }else if(!strcasecmp($check_row['nickname'],$nickname)){
         echo '匿名錯誤';
       }else if(!strcasecmp($check_ro['username'],$username)){

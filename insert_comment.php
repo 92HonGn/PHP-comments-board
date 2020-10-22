@@ -24,7 +24,7 @@
 
   $arr = array( 
     'nickname' => $row['nickname'],
-    'cmmt_id' => $commet_id,
+    'commet_id' => $commet_id,
     'created_by' => $row['created_by'] 
   );
 
